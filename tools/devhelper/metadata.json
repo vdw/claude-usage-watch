@@ -1,0 +1,6 @@
+{
+  "uuid": "cuw-devhelper@local",
+  "name": "CUW dev helper",
+  "description": "Turns on unsafe mode so tools/devshell.sh can drive the shell over D-Bus (Eval, Screenshot). Only for the isolated dev shell.",
+  "shell-version": ["48"]
+}

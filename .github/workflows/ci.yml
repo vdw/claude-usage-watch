@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install gjs
+        run: sudo apt-get update && sudo apt-get install -y gjs libglib2.0-bin
+
+      - name: Unit tests
+        run: gjs -m tests/run.js
+
+      - name: Check the GSettings schema
+        run: glib-compile-schemas --strict --dry-run schemas/
+
+      - name: Check that the stylesheets match the template
+        run: |
+          python3 tools/gen-css.py
+          git diff --exit-code -- '*.css'
+
+      - name: Check metadata.json
+        run: python3 -c "import json; json.load(open('metadata.json'))"

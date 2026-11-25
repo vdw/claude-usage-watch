@@ -1,0 +1,9 @@
+{
+  "uuid": "claude-usage-watch@vdw.github.io",
+  "name": "Claude Usage Watch",
+  "description": "Unofficial, not affiliated with Anthropic. Shows the 5-hour and weekly Claude Code usage limits of several accounts (CLAUDE_CONFIG_DIR profiles) in the top bar.\n\nEvery 5 minutes it runs the local `claude /usage` command once per profile. This command uses no tokens.\n\nRequires the Claude Code CLI, signed in with a Claude subscription in each profile.",
+  "shell-version": ["48"],
+  "url": "https://github.com/vdw/claude-usage-watch",
+  "settings-schema": "org.gnome.shell.extensions.claude-usage-watch",
+  "version-name": "0.1.0"
+}

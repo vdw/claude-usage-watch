@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="org.gnome.shell.extensions.claude-usage-watch.DisplayMode">
+    <value nick="all" value="0"/>
+    <value nick="worst" value="1"/>
+  </enum>
+  <enum id="org.gnome.shell.extensions.claude-usage-watch.PanelMetric">
+    <value nick="session" value="0"/>
+    <value nick="max" value="1"/>
+  </enum>
+  <schema id="org.gnome.shell.extensions.claude-usage-watch"
+          path="/org/gnome/shell/extensions/claude-usage-watch/">
+    <key name="accounts" type="s">
+      <default>'[{"id":"personal","label":"Personal","shortTag":"P","configDir":"","enabled":true}]'</default>
+      <summary>Accounts</summary>
+      <description>JSON array of {id, label, shortTag, configDir, enabled}. An empty configDir means the default ~/.claude profile (CLAUDE_CONFIG_DIR unset).</description>
+    </key>
+    <key name="claude-path" type="s">
+      <default>''</default>
+      <summary>Path to the claude binary</summary>
+      <description>Leave empty to search PATH and ~/.local/bin.</description>
+    </key>
+    <key name="poll-interval" type="u">
+      <range min="60" max="3600"/>
+      <default>300</default>
+      <summary>Seconds between polls</summary>
+    </key>
+    <key name="display-mode" enum="org.gnome.shell.extensions.claude-usage-watch.DisplayMode">
+      <default>'all'</default>
+      <summary>Top-bar display mode</summary>
+      <description>"all" shows every enabled account; "worst" shows only the account with the highest usage.</description>
+    </key>
+    <key name="panel-metric" enum="org.gnome.shell.extensions.claude-usage-watch.PanelMetric">
+      <default>'session'</default>
+      <summary>Number shown in the top bar</summary>
+      <description>"session" shows the 5-hour window; "max" shows the higher of the 5-hour and weekly windows.</description>
+    </key>
+    <key name="warn-threshold" type="u">
+      <range min="1" max="100"/>
+      <default>70</default>
+      <summary>Warning threshold (percent)</summary>
+    </key>
+    <key name="crit-threshold" type="u">
+      <range min="1" max="100"/>
+      <default>90</default>
+      <summary>Critical threshold (percent)</summary>
+    </key>
+  </schema>
+</schemalist>
